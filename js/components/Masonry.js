@@ -1,21 +1,35 @@
-(function() {
-	var app = {
-		values: {
-			items: [200, 100, 200, 200, 100, 100, 100, 200, 200, 200, 200, 100, 100, 100, 100, 100, 100, 200, 300, 400, 600, 100, 200, 300, 200, 200]
-		},
+var COMPONENT = COMPONENT || {};
+
+function Masonry(params) {
+	this.items = params.items;
+}
+
+COMPONENT.Masonry = (function() {
+	function Masonry(options) {
+		this._eventNameSpace = 'Masonry';
+
+		this.options = {
+			wrapperClass: options.wrapperClass,
+			columnLen: options.columnLen,
+			items: options.items
+		}
+
+		this.init();
+	}
+
+	Masonry.prototype = {
 		init: function() {
-			console.log('init');
+			console.log('Masonry object initialised');
 
 			this.loadMasonry();
 		},
 		loadMasonry: function() {
-			var items = this.values.items;
-			this.shuffle(items);
+			var items = this.options.items;
 
 			for (var i=0; i<items.length; i++) {
 				var colHeights = [];
 
-				for (var j=0; j<3; j++) {
+				for (var j=0; j<this.options.columnLen; j++) {
 					currentHeight = document.querySelectorAll('.col' + (j+1))[0].clientHeight;
 
 					colHeights.push(currentHeight);
@@ -29,22 +43,8 @@
 
 				document.querySelectorAll('.col' + (shortestCol + 1))[0].appendChild(box);
 			}
-		},
-		shuffle: function(a) {
-			var j, x, i;
-		   for (i = a.length; i; i -= 1) {
-		       j = Math.floor(Math.random() * i);
-		       x = a[i - 1];
-		       a[i - 1] = a[j];
-		       a[j] = x;
-		   }
 		}
 	}
 
-	app.init();
-
+	return Masonry;
 })();
-
-
-
-
