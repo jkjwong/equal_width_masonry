@@ -12,23 +12,22 @@
 			var items = this.values.items;
 			this.shuffle(items);
 
-			console.log(items);
-
 			for (var i=0; i<items.length; i++) {
-
 				var colHeights = [];
 
 				for (var j=0; j<3; j++) {
-					currentHeight = $('.col' + (j+1)).height();
+					currentHeight = document.querySelectorAll('.col' + (j+1))[0].clientHeight;
 
 					colHeights.push(currentHeight);
 				}
 
-				console.log('heights', colHeights);
+				var shortestCol = colHeights.indexOf(Math.min.apply(Math, colHeights));
 
-				shortestCol = colHeights.indexOf(Math.min.apply(Math, colHeights));
+				var box = document.createElement('div');
+				box.className = 'box';
+				box.style.height = items[i] + 'px';
 
-				$('.col' + (shortestCol + 1)).append('<div class="box" style="height:'+items[i]+'px"></div>');
+				document.querySelectorAll('.col' + (shortestCol + 1))[0].appendChild(box);
 			}
 		},
 		shuffle: function(a) {
