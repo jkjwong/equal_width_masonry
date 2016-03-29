@@ -25,12 +25,13 @@ COMPONENT.Masonry = (function() {
 		},
 		loadMasonry: function() {
 			var items = this.options.items;
+			var wrapperClass = this.options.wrapperClass;
 
 			for (var i=0; i<items.length; i++) {
 				var colHeights = [];
 
 				for (var j=0; j<this.options.columnLen; j++) {
-					currentHeight = document.querySelectorAll('.col' + (j+1))[0].clientHeight;
+					currentHeight = document.querySelectorAll(wrapperClass + ' .col' + (j+1))[0].clientHeight;
 
 					colHeights.push(currentHeight);
 				}
@@ -41,7 +42,7 @@ COMPONENT.Masonry = (function() {
 				box.className = 'box';
 				box.style.height = items[i] + 'px';
 
-				document.querySelectorAll('.col' + (shortestCol + 1))[0].appendChild(box);
+				document.querySelectorAll(wrapperClass + ' .col' + (shortestCol + 1))[0].appendChild(box);
 			}
 		}
 	}
