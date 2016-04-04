@@ -1,9 +1,5 @@
 var COMPONENT = COMPONENT || {};
 
-function Masonry(params) {
-	this.items = params.items;
-}
-
 COMPONENT.Masonry = (function() {
 	function Masonry(options) {
 		this._eventNameSpace = 'Masonry';
@@ -21,9 +17,6 @@ COMPONENT.Masonry = (function() {
 		init: function() {
 			console.log('Masonry object initialised');
 
-			this.loadMasonry();
-		},
-		loadMasonry: function() {
 			var items = this.options.items;
 			var wrapperClass = this.options.wrapperClass;
 
@@ -46,6 +39,5 @@ COMPONENT.Masonry = (function() {
 			}
 		}
 	}
-
 	return Masonry;
 })();
